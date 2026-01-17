@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CaroLAN/CaroLAN.csproj" />
+  <Project Path="WinFormServer/WinFormServer.csproj" />
+</Solution>
