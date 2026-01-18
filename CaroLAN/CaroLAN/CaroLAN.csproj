@@ -10,10 +10,12 @@
 
   <ItemGroup>
     <EmbeddedResource Remove="LoginForm.resx" />
+    <EmbeddedResource Remove="sanhCho.resx" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Include="LoginForm.resx" />
+    <Compile Include="sanhCho.resx" />
   </ItemGroup>
 
   <ItemGroup>
