@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="LoginForm.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="LoginForm.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySqlConnector" Version="2.5.0" />
   </ItemGroup>
 
