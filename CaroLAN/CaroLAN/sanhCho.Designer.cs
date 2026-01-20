@@ -228,7 +228,19 @@ namespace CaroLAN
             // 
             // btnAccept
             // 
-            
+            btnAccept.BackColor = Color.FromArgb(46, 204, 113);
+            btnAccept.FlatAppearance.BorderSize = 0;
+            btnAccept.FlatStyle = FlatStyle.Flat;
+            btnAccept.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnAccept.ForeColor = Color.White;
+            btnAccept.Location = new Point(18, 146);
+            btnAccept.Margin = new Padding(3, 2, 3, 2);
+            btnAccept.Name = "btnAccept";
+            btnAccept.Size = new Size(455, 30);
+            btnAccept.TabIndex = 2;
+            btnAccept.Text = "✅ CHẤP NHẬN";
+            btnAccept.UseVisualStyleBackColor = false;
+            btnAccept.Click += btnAccept_Click;
             // 
             // label3
             // 
