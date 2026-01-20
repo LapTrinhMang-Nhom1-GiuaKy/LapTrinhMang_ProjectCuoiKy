@@ -231,7 +231,15 @@
             // 
             // pnlPlayerO
             // 
-           
+            pnlPlayerO.BackColor = Color.White;
+            pnlPlayerO.BorderStyle = BorderStyle.FixedSingle;
+            pnlPlayerO.Controls.Add(picPlayerO);
+            pnlPlayerO.Controls.Add(lblPlayerO);
+            pnlPlayerO.Controls.Add(lblPlayerOStatus);
+            pnlPlayerO.Location = new Point(9, 181);
+            pnlPlayerO.Name = "pnlPlayerO";
+            pnlPlayerO.Size = new Size(250, 100);
+            pnlPlayerO.TabIndex = 2;
             // 
             // picPlayerO
             // 
