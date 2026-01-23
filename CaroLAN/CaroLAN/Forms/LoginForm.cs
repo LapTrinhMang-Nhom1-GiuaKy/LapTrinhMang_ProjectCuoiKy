@@ -356,6 +356,30 @@ namespace CaroLAN.Forms
 
             try
             {
+                // ADDED: Check if account is already logged in
+                socket.Send("GET_CLIENT_LIST");
+                string? clientListResponse = WaitForResponse("CLIENT_LIST:", 2000); // 2s timeout for list
+
+                if (clientListResponse != null)
+                {
+                   string listData = clientListResponse.Substring("CLIENT_LIST:".Length);
+                   // List format: "User1,User2|BUSY,User3"
+                   string[] onlineUsers = listData.Split(',');
+                   
+                   foreach (var u in onlineUsers)
+                   {
+                       // Remove status suffixes if any (e.g., "|BUSY")
+                       string cleanName = u.Split('|')[0].Trim(); 
+                       if (cleanName.Equals(username, StringComparison.OrdinalIgnoreCase))
+                       {
+                           MessageBox.Show($"Tài khoản '{username}' đang được đăng nhập ở nơi khác!\nVui lòng đăng xuất ở thiết bị kia trước.", 
+                               "Cảnh báo đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                           return;
+                       }
+                   }
+                }
+                // End check
+
                 socket.Send($"LOGIN:{username}:{password}");
                 lblStatus.Text = "Đang đăng nhập...";
 
