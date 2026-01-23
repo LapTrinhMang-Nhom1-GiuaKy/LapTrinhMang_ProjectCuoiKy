@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WinFormServer
+namespace WinFormServer.Models
 {
     internal class GameBoardState
     {

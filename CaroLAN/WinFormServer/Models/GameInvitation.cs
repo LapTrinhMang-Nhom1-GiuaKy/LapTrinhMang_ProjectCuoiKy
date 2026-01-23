@@ -1,7 +1,7 @@
 using System;
 using System.Net.Sockets;
 
-namespace WinFormServer
+namespace WinFormServer.Models
 {
     internal class GameInvitation
     {

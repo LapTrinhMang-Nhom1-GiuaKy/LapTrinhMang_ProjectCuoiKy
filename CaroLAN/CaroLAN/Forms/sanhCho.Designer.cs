@@ -1,4 +1,4 @@
-namespace CaroLAN
+﻿namespace CaroLAN.Forms
 {
     partial class sanhCho
     {
@@ -87,9 +87,9 @@ namespace CaroLAN
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(52, 73, 94);
-            label1.Location = new Point(18, 11);
+            label1.Location = new Point(21, 15);
             label1.Name = "label1";
-            label1.Size = new Size(206, 21);
+            label1.Size = new Size(258, 28);
             label1.TabIndex = 0;
             label1.Text = "👥 Người chơi trực tuyến";
             // 
@@ -100,12 +100,11 @@ namespace CaroLAN
             lstClients.Font = new Font("Segoe UI", 10F);
             lstClients.ForeColor = Color.FromArgb(44, 62, 80);
             lstClients.FormattingEnabled = true;
-            lstClients.ItemHeight = 17;
-            lstClients.Location = new Point(18, 38);
-            lstClients.Margin = new Padding(3, 2, 3, 2);
+            lstClients.ItemHeight = 23;
+            lstClients.Location = new Point(21, 51);
             lstClients.Name = "lstClients";
             lstClients.ScrollAlwaysVisible = true;
-            lstClients.Size = new Size(455, 104);
+            lstClients.Size = new Size(520, 117);
             lstClients.TabIndex = 1;
             // 
             // btnConnect
@@ -115,10 +114,9 @@ namespace CaroLAN
             btnConnect.FlatStyle = FlatStyle.Flat;
             btnConnect.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnConnect.ForeColor = Color.White;
-            btnConnect.Location = new Point(118, 20);
-            btnConnect.Margin = new Padding(3, 2, 3, 2);
+            btnConnect.Location = new Point(135, 27);
             btnConnect.Name = "btnConnect";
-            btnConnect.Size = new Size(101, 20);
+            btnConnect.Size = new Size(115, 27);
             btnConnect.TabIndex = 2;
             btnConnect.Text = "Kết nối";
             btnConnect.UseVisualStyleBackColor = false;
@@ -131,10 +129,9 @@ namespace CaroLAN
             btnFindServers.FlatStyle = FlatStyle.Flat;
             btnFindServers.Font = new Font("Segoe UI", 7F, FontStyle.Bold);
             btnFindServers.ForeColor = Color.White;
-            btnFindServers.Location = new Point(96, 20);
-            btnFindServers.Margin = new Padding(3, 2, 3, 2);
+            btnFindServers.Location = new Point(110, 27);
             btnFindServers.Name = "btnFindServers";
-            btnFindServers.Size = new Size(18, 20);
+            btnFindServers.Size = new Size(21, 27);
             btnFindServers.TabIndex = 4;
             btnFindServers.Text = "🔍";
             btnFindServers.UseVisualStyleBackColor = false;
@@ -145,10 +142,9 @@ namespace CaroLAN
             txtIP.BackColor = Color.White;
             txtIP.BorderStyle = BorderStyle.FixedSingle;
             txtIP.Font = new Font("Segoe UI", 9F);
-            txtIP.Location = new Point(9, 20);
-            txtIP.Margin = new Padding(3, 2, 3, 2);
+            txtIP.Location = new Point(10, 27);
             txtIP.Name = "txtIP";
-            txtIP.Size = new Size(83, 23);
+            txtIP.Size = new Size(95, 27);
             txtIP.TabIndex = 1;
             txtIP.Text = "127.0.0.1";
             txtIP.TextAlign = HorizontalAlignment.Center;
@@ -159,10 +155,10 @@ namespace CaroLAN
             lblStatus.Dock = DockStyle.Left;
             lblStatus.Font = new Font("Segoe UI", 10F);
             lblStatus.ForeColor = Color.FromArgb(52, 73, 94);
-            lblStatus.Location = new Point(18, 6);
+            lblStatus.Location = new Point(21, 8);
             lblStatus.Name = "lblStatus";
-            lblStatus.Padding = new Padding(4, 0, 0, 0);
-            lblStatus.Size = new Size(182, 19);
+            lblStatus.Padding = new Padding(5, 0, 0, 0);
+            lblStatus.Size = new Size(226, 23);
             lblStatus.TabIndex = 0;
             lblStatus.Text = "⚪ Trạng thái: Chưa kết nối";
             lblStatus.TextAlign = ContentAlignment.MiddleLeft;
@@ -174,10 +170,9 @@ namespace CaroLAN
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(22, 49);
-            button3.Margin = new Padding(3, 2, 3, 2);
+            button3.Location = new Point(25, 65);
             button3.Name = "button3";
-            button3.Size = new Size(175, 41);
+            button3.Size = new Size(200, 55);
             button3.TabIndex = 1;
             button3.Text = "🎯 BẮT ĐẦU";
             button3.UseVisualStyleBackColor = false;
@@ -188,9 +183,9 @@ namespace CaroLAN
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F);
             label2.ForeColor = Color.FromArgb(149, 165, 166);
-            label2.Location = new Point(210, 60);
+            label2.Location = new Point(240, 80);
             label2.Name = "label2";
-            label2.Size = new Size(219, 15);
+            label2.Size = new Size(272, 20);
             label2.TabIndex = 2;
             label2.Text = "Tìm đối thủ ngẫu nhiên và bắt đầu chơi!";
             // 
@@ -201,10 +196,9 @@ namespace CaroLAN
             btnRequest.FlatStyle = FlatStyle.Flat;
             btnRequest.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnRequest.ForeColor = Color.White;
-            btnRequest.Location = new Point(18, 146);
-            btnRequest.Margin = new Padding(3, 2, 3, 2);
+            btnRequest.Location = new Point(21, 195);
             btnRequest.Name = "btnRequest";
-            btnRequest.Size = new Size(455, 30);
+            btnRequest.Size = new Size(520, 40);
             btnRequest.TabIndex = 2;
             btnRequest.Text = "📧 MỜI CHƠI";
             btnRequest.UseVisualStyleBackColor = false;
@@ -217,12 +211,11 @@ namespace CaroLAN
             lstRequests.Font = new Font("Segoe UI", 10F);
             lstRequests.ForeColor = Color.FromArgb(44, 62, 80);
             lstRequests.FormattingEnabled = true;
-            lstRequests.ItemHeight = 17;
-            lstRequests.Location = new Point(18, 38);
-            lstRequests.Margin = new Padding(3, 2, 3, 2);
+            lstRequests.ItemHeight = 23;
+            lstRequests.Location = new Point(21, 51);
             lstRequests.Name = "lstRequests";
             lstRequests.ScrollAlwaysVisible = true;
-            lstRequests.Size = new Size(455, 104);
+            lstRequests.Size = new Size(520, 117);
             lstRequests.TabIndex = 1;
             lstRequests.SelectedIndexChanged += lstRequests_SelectedIndexChanged;
             // 
@@ -233,10 +226,9 @@ namespace CaroLAN
             btnAccept.FlatStyle = FlatStyle.Flat;
             btnAccept.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnAccept.ForeColor = Color.White;
-            btnAccept.Location = new Point(18, 146);
-            btnAccept.Margin = new Padding(3, 2, 3, 2);
+            btnAccept.Location = new Point(21, 195);
             btnAccept.Name = "btnAccept";
-            btnAccept.Size = new Size(455, 30);
+            btnAccept.Size = new Size(520, 40);
             btnAccept.TabIndex = 2;
             btnAccept.Text = "✅ CHẤP NHẬN";
             btnAccept.UseVisualStyleBackColor = false;
@@ -247,9 +239,9 @@ namespace CaroLAN
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label3.ForeColor = Color.FromArgb(52, 73, 94);
-            label3.Location = new Point(18, 11);
+            label3.Location = new Point(21, 15);
             label3.Name = "label3";
-            label3.Size = new Size(127, 21);
+            label3.Size = new Size(160, 28);
             label3.TabIndex = 0;
             label3.Text = "📨 Lời mời đấu";
             // 
@@ -257,11 +249,10 @@ namespace CaroLAN
             // 
             tabHistory.Controls.Add(tabMyHistory);
             tabHistory.Font = new Font("Segoe UI", 9F);
-            tabHistory.Location = new Point(18, 38);
-            tabHistory.Margin = new Padding(3, 2, 3, 2);
+            tabHistory.Location = new Point(21, 51);
             tabHistory.Name = "tabHistory";
             tabHistory.SelectedIndex = 0;
-            tabHistory.Size = new Size(962, 172);
+            tabHistory.Size = new Size(1099, 229);
             tabHistory.TabIndex = 1;
             // 
             // tabMyHistory
@@ -269,11 +260,10 @@ namespace CaroLAN
             tabMyHistory.BackColor = Color.FromArgb(250, 251, 252);
             tabMyHistory.Controls.Add(dgvMyHistory);
             tabMyHistory.Controls.Add(panelHistoryControls);
-            tabMyHistory.Location = new Point(4, 24);
-            tabMyHistory.Margin = new Padding(3, 2, 3, 2);
+            tabMyHistory.Location = new Point(4, 29);
             tabMyHistory.Name = "tabMyHistory";
-            tabMyHistory.Padding = new Padding(9, 8, 9, 8);
-            tabMyHistory.Size = new Size(954, 144);
+            tabMyHistory.Padding = new Padding(10, 11, 10, 11);
+            tabMyHistory.Size = new Size(1091, 196);
             tabMyHistory.TabIndex = 1;
             tabMyHistory.Text = "⭐ Lịch sử của tôi";
             // 
@@ -293,8 +283,7 @@ namespace CaroLAN
             dgvMyHistory.Dock = DockStyle.Fill;
             dgvMyHistory.EnableHeadersVisualStyles = false;
             dgvMyHistory.GridColor = Color.FromArgb(230, 230, 230);
-            dgvMyHistory.Location = new Point(9, 42);
-            dgvMyHistory.Margin = new Padding(3, 2, 3, 2);
+            dgvMyHistory.Location = new Point(10, 56);
             dgvMyHistory.MultiSelect = false;
             dgvMyHistory.Name = "dgvMyHistory";
             dgvMyHistory.ReadOnly = true;
@@ -302,7 +291,7 @@ namespace CaroLAN
             dgvMyHistory.RowHeadersWidth = 51;
             dgvMyHistory.RowTemplate.Height = 30;
             dgvMyHistory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMyHistory.Size = new Size(936, 94);
+            dgvMyHistory.Size = new Size(1071, 129);
             dgvMyHistory.TabIndex = 1;
             // 
             // colRoomId
@@ -343,11 +332,10 @@ namespace CaroLAN
             panelHistoryControls.Controls.Add(lblHistoryStats);
             panelHistoryControls.Controls.Add(btnRefreshMy);
             panelHistoryControls.Dock = DockStyle.Top;
-            panelHistoryControls.Location = new Point(9, 8);
-            panelHistoryControls.Margin = new Padding(3, 2, 3, 2);
+            panelHistoryControls.Location = new Point(10, 11);
             panelHistoryControls.Name = "panelHistoryControls";
-            panelHistoryControls.Padding = new Padding(4);
-            panelHistoryControls.Size = new Size(936, 34);
+            panelHistoryControls.Padding = new Padding(5);
+            panelHistoryControls.Size = new Size(1071, 45);
             panelHistoryControls.TabIndex = 0;
             // 
             // lblHistoryStats
@@ -356,10 +344,10 @@ namespace CaroLAN
             lblHistoryStats.Dock = DockStyle.Left;
             lblHistoryStats.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblHistoryStats.ForeColor = Color.FromArgb(52, 73, 94);
-            lblHistoryStats.Location = new Point(4, 4);
+            lblHistoryStats.Location = new Point(5, 5);
             lblHistoryStats.Name = "lblHistoryStats";
-            lblHistoryStats.Padding = new Padding(4, 6, 0, 0);
-            lblHistoryStats.Size = new Size(225, 25);
+            lblHistoryStats.Padding = new Padding(5, 8, 0, 0);
+            lblHistoryStats.Size = new Size(275, 31);
             lblHistoryStats.TabIndex = 0;
             lblHistoryStats.Text = "Tổng: 0 trận | Thắng: 0 | Thua: 0";
             // 
@@ -371,10 +359,10 @@ namespace CaroLAN
             btnRefreshMy.FlatStyle = FlatStyle.Flat;
             btnRefreshMy.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnRefreshMy.ForeColor = Color.White;
-            btnRefreshMy.Location = new Point(844, 4);
-            btnRefreshMy.Margin = new Padding(4);
+            btnRefreshMy.Location = new Point(965, 5);
+            btnRefreshMy.Margin = new Padding(5);
             btnRefreshMy.Name = "btnRefreshMy";
-            btnRefreshMy.Size = new Size(88, 26);
+            btnRefreshMy.Size = new Size(101, 35);
             btnRefreshMy.TabIndex = 1;
             btnRefreshMy.Text = "🔄";
             btnRefreshMy.UseVisualStyleBackColor = false;
@@ -388,10 +376,9 @@ namespace CaroLAN
             panelHeader.Controls.Add(panelConnection);
             panelHeader.Dock = DockStyle.Top;
             panelHeader.Location = new Point(0, 0);
-            panelHeader.Margin = new Padding(3, 2, 3, 2);
             panelHeader.Name = "panelHeader";
-            panelHeader.Padding = new Padding(18, 11, 18, 11);
-            panelHeader.Size = new Size(1050, 75);
+            panelHeader.Padding = new Padding(21, 15, 21, 15);
+            panelHeader.Size = new Size(1200, 100);
             panelHeader.TabIndex = 0;
             // 
             // lblTitle
@@ -400,10 +387,10 @@ namespace CaroLAN
             lblTitle.Dock = DockStyle.Left;
             lblTitle.Font = new Font("Segoe UI", 26F, FontStyle.Bold);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(18, 11);
+            lblTitle.Location = new Point(21, 15);
             lblTitle.Name = "lblTitle";
-            lblTitle.Padding = new Padding(0, 9, 0, 0);
-            lblTitle.Size = new Size(289, 56);
+            lblTitle.Padding = new Padding(0, 12, 0, 0);
+            lblTitle.Size = new Size(357, 72);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "🎮 GAME CARO";
             // 
@@ -413,11 +400,10 @@ namespace CaroLAN
             panelSoundControls.Controls.Add(btnToggleMusic);
             panelSoundControls.Controls.Add(btnToggleSfx);
             panelSoundControls.Dock = DockStyle.Right;
-            panelSoundControls.Location = new Point(576, 11);
-            panelSoundControls.Margin = new Padding(3, 2, 3, 2);
+            panelSoundControls.Location = new Point(657, 15);
             panelSoundControls.Name = "panelSoundControls";
-            panelSoundControls.Padding = new Padding(9, 4, 9, 4);
-            panelSoundControls.Size = new Size(228, 53);
+            panelSoundControls.Padding = new Padding(10, 5, 10, 5);
+            panelSoundControls.Size = new Size(261, 70);
             panelSoundControls.TabIndex = 2;
             // 
             // btnToggleMusic
@@ -427,10 +413,9 @@ namespace CaroLAN
             btnToggleMusic.FlatStyle = FlatStyle.Flat;
             btnToggleMusic.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnToggleMusic.ForeColor = Color.White;
-            btnToggleMusic.Location = new Point(9, 8);
-            btnToggleMusic.Margin = new Padding(3, 2, 3, 2);
+            btnToggleMusic.Location = new Point(10, 11);
             btnToggleMusic.Name = "btnToggleMusic";
-            btnToggleMusic.Size = new Size(101, 38);
+            btnToggleMusic.Size = new Size(115, 51);
             btnToggleMusic.TabIndex = 0;
             btnToggleMusic.Text = "🎵 Nhạc: BẬT";
             btnToggleMusic.UseVisualStyleBackColor = false;
@@ -443,10 +428,9 @@ namespace CaroLAN
             btnToggleSfx.FlatStyle = FlatStyle.Flat;
             btnToggleSfx.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnToggleSfx.ForeColor = Color.White;
-            btnToggleSfx.Location = new Point(118, 8);
-            btnToggleSfx.Margin = new Padding(3, 2, 3, 2);
+            btnToggleSfx.Location = new Point(135, 11);
             btnToggleSfx.Name = "btnToggleSfx";
-            btnToggleSfx.Size = new Size(101, 38);
+            btnToggleSfx.Size = new Size(115, 51);
             btnToggleSfx.TabIndex = 1;
             btnToggleSfx.Text = "🔊 SFX: BẬT";
             btnToggleSfx.UseVisualStyleBackColor = false;
@@ -460,11 +444,10 @@ namespace CaroLAN
             panelConnection.Controls.Add(btnFindServers);
             panelConnection.Controls.Add(btnConnect);
             panelConnection.Dock = DockStyle.Right;
-            panelConnection.Location = new Point(804, 11);
-            panelConnection.Margin = new Padding(3, 2, 3, 2);
+            panelConnection.Location = new Point(918, 15);
             panelConnection.Name = "panelConnection";
-            panelConnection.Padding = new Padding(9, 4, 9, 4);
-            panelConnection.Size = new Size(228, 53);
+            panelConnection.Padding = new Padding(10, 5, 10, 5);
+            panelConnection.Size = new Size(261, 70);
             panelConnection.TabIndex = 1;
             // 
             // lblConnectionTitle
@@ -472,9 +455,9 @@ namespace CaroLAN
             lblConnectionTitle.AutoSize = true;
             lblConnectionTitle.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
             lblConnectionTitle.ForeColor = Color.White;
-            lblConnectionTitle.Location = new Point(9, 4);
+            lblConnectionTitle.Location = new Point(10, 5);
             lblConnectionTitle.Name = "lblConnectionTitle";
-            lblConnectionTitle.Size = new Size(65, 13);
+            lblConnectionTitle.Size = new Size(87, 19);
             lblConnectionTitle.TabIndex = 0;
             lblConnectionTitle.Text = "🔌 KẾT NỐI";
             // 
@@ -483,11 +466,10 @@ namespace CaroLAN
             panelStatusBar.BackColor = Color.FromArgb(236, 240, 241);
             panelStatusBar.Controls.Add(lblStatus);
             panelStatusBar.Dock = DockStyle.Top;
-            panelStatusBar.Location = new Point(0, 75);
-            panelStatusBar.Margin = new Padding(3, 2, 3, 2);
+            panelStatusBar.Location = new Point(0, 100);
             panelStatusBar.Name = "panelStatusBar";
-            panelStatusBar.Padding = new Padding(18, 6, 18, 6);
-            panelStatusBar.Size = new Size(1050, 30);
+            panelStatusBar.Padding = new Padding(21, 8, 21, 8);
+            panelStatusBar.Size = new Size(1200, 40);
             panelStatusBar.TabIndex = 1;
             // 
             // panelMain
@@ -497,11 +479,10 @@ namespace CaroLAN
             panelMain.Controls.Add(panelPlayersAndInvites);
             panelMain.Controls.Add(panelQuickMatch);
             panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(0, 105);
-            panelMain.Margin = new Padding(3, 2, 3, 2);
+            panelMain.Location = new Point(0, 140);
             panelMain.Name = "panelMain";
-            panelMain.Padding = new Padding(26, 15, 26, 15);
-            panelMain.Size = new Size(1050, 551);
+            panelMain.Padding = new Padding(30, 20, 30, 20);
+            panelMain.Size = new Size(1200, 735);
             panelMain.TabIndex = 2;
             // 
             // panelHistory
@@ -510,11 +491,10 @@ namespace CaroLAN
             panelHistory.Controls.Add(lblHistoryTitle);
             panelHistory.Controls.Add(tabHistory);
             panelHistory.Dock = DockStyle.Top;
-            panelHistory.Location = new Point(26, 322);
-            panelHistory.Margin = new Padding(3, 2, 3, 2);
+            panelHistory.Location = new Point(30, 429);
             panelHistory.Name = "panelHistory";
-            panelHistory.Padding = new Padding(18, 11, 18, 11);
-            panelHistory.Size = new Size(998, 221);
+            panelHistory.Padding = new Padding(21, 15, 21, 15);
+            panelHistory.Size = new Size(1140, 295);
             panelHistory.TabIndex = 2;
             // 
             // lblHistoryTitle
@@ -522,9 +502,9 @@ namespace CaroLAN
             lblHistoryTitle.AutoSize = true;
             lblHistoryTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblHistoryTitle.ForeColor = Color.FromArgb(52, 73, 94);
-            lblHistoryTitle.Location = new Point(18, 11);
+            lblHistoryTitle.Location = new Point(21, 15);
             lblHistoryTitle.Name = "lblHistoryTitle";
-            lblHistoryTitle.Size = new Size(155, 21);
+            lblHistoryTitle.Size = new Size(194, 28);
             lblHistoryTitle.TabIndex = 0;
             lblHistoryTitle.Text = "📊 Lịch sử gần đây";
             // 
@@ -534,11 +514,10 @@ namespace CaroLAN
             panelPlayersAndInvites.Controls.Add(panelInvitations);
             panelPlayersAndInvites.Controls.Add(panelPlayers);
             panelPlayersAndInvites.Dock = DockStyle.Top;
-            panelPlayersAndInvites.Location = new Point(26, 127);
-            panelPlayersAndInvites.Margin = new Padding(3, 2, 3, 2);
+            panelPlayersAndInvites.Location = new Point(30, 169);
             panelPlayersAndInvites.Name = "panelPlayersAndInvites";
-            panelPlayersAndInvites.Padding = new Padding(0, 11, 0, 0);
-            panelPlayersAndInvites.Size = new Size(998, 195);
+            panelPlayersAndInvites.Padding = new Padding(0, 15, 0, 0);
+            panelPlayersAndInvites.Size = new Size(1140, 260);
             panelPlayersAndInvites.TabIndex = 1;
             // 
             // panelInvitations
@@ -548,11 +527,10 @@ namespace CaroLAN
             panelInvitations.Controls.Add(lstRequests);
             panelInvitations.Controls.Add(btnAccept);
             panelInvitations.Dock = DockStyle.Right;
-            panelInvitations.Location = new Point(508, 11);
-            panelInvitations.Margin = new Padding(3, 2, 3, 2);
+            panelInvitations.Location = new Point(580, 15);
             panelInvitations.Name = "panelInvitations";
-            panelInvitations.Padding = new Padding(18, 11, 18, 11);
-            panelInvitations.Size = new Size(490, 184);
+            panelInvitations.Padding = new Padding(21, 15, 21, 15);
+            panelInvitations.Size = new Size(560, 245);
             panelInvitations.TabIndex = 1;
             // 
             // panelPlayers
@@ -562,11 +540,10 @@ namespace CaroLAN
             panelPlayers.Controls.Add(lstClients);
             panelPlayers.Controls.Add(btnRequest);
             panelPlayers.Dock = DockStyle.Left;
-            panelPlayers.Location = new Point(0, 11);
-            panelPlayers.Margin = new Padding(3, 2, 3, 2);
+            panelPlayers.Location = new Point(0, 15);
             panelPlayers.Name = "panelPlayers";
-            panelPlayers.Padding = new Padding(18, 11, 18, 11);
-            panelPlayers.Size = new Size(490, 184);
+            panelPlayers.Padding = new Padding(21, 15, 21, 15);
+            panelPlayers.Size = new Size(560, 245);
             panelPlayers.TabIndex = 0;
             // 
             // panelQuickMatch
@@ -576,11 +553,10 @@ namespace CaroLAN
             panelQuickMatch.Controls.Add(button3);
             panelQuickMatch.Controls.Add(label2);
             panelQuickMatch.Dock = DockStyle.Top;
-            panelQuickMatch.Location = new Point(26, 15);
-            panelQuickMatch.Margin = new Padding(3, 2, 3, 2);
+            panelQuickMatch.Location = new Point(30, 20);
             panelQuickMatch.Name = "panelQuickMatch";
-            panelQuickMatch.Padding = new Padding(22, 15, 22, 15);
-            panelQuickMatch.Size = new Size(998, 112);
+            panelQuickMatch.Padding = new Padding(25, 20, 25, 20);
+            panelQuickMatch.Size = new Size(1140, 149);
             panelQuickMatch.TabIndex = 0;
             // 
             // lblQuickMatchTitle
@@ -588,23 +564,22 @@ namespace CaroLAN
             lblQuickMatchTitle.AutoSize = true;
             lblQuickMatchTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblQuickMatchTitle.ForeColor = Color.FromArgb(52, 73, 94);
-            lblQuickMatchTitle.Location = new Point(22, 15);
+            lblQuickMatchTitle.Location = new Point(25, 20);
             lblQuickMatchTitle.Name = "lblQuickMatchTitle";
-            lblQuickMatchTitle.Size = new Size(194, 30);
+            lblQuickMatchTitle.Size = new Size(240, 37);
             lblQuickMatchTitle.TabIndex = 0;
             lblQuickMatchTitle.Text = "⚡ CHƠI NHANH";
             // 
             // sanhCho
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 247, 250);
-            ClientSize = new Size(1050, 656);
+            ClientSize = new Size(1200, 875);
             Controls.Add(panelMain);
             Controls.Add(panelStatusBar);
             Controls.Add(panelHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "sanhCho";
             StartPosition = FormStartPosition.CenterScreen;

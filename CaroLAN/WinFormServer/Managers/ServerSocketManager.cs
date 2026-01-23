@@ -1,13 +1,10 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Collections.Concurrent;
-using System.Linq;
-using System.Collections.Generic;
+using WinFormServer.Models;
 
-namespace WinFormServer
+namespace WinFormServer.Managers
 {
     internal class ServerSocketManager
     {

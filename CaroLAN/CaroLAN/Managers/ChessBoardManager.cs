@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace CaroLAN
+namespace CaroLAN.Managers
 {
     public class ChessBoardManager
     {
@@ -12,8 +12,8 @@ namespace CaroLAN
         public bool isPlayerTurn = false;
         public bool isGameOver = false;
 
-        public event EventHandler<Point> PlayerClicked;
-        public event EventHandler<Player> GameEnded;
+        public event EventHandler<Point>? PlayerClicked;
+        public event EventHandler<Player>? GameEnded;
 
         public Player currentPlayer = Player.One;
 
@@ -60,12 +60,14 @@ namespace CaroLAN
             }
         }
 
-        private void Btn_Click(object sender, EventArgs e)
+        private void Btn_Click(object? sender, EventArgs e)
         {
             if (!isPlayerTurn || isGameOver) return;
 
-            Button btn = sender as Button;
-            Point point = (Point)btn.Tag;
+            if (sender is not Button btn) return; // Fix CS8600: null check and pattern matching
+
+            if (btn.Tag is not Point point) return; // Fix CS8605: safely cast only if Tag is Point
+
             if (matrix[point.X, point.Y] != 0) return;
 
             if (currentPlayer == Player.One)
@@ -74,7 +76,6 @@ namespace CaroLAN
                 btn.ForeColor = Color.Blue;
                 matrix[point.X, point.Y] = 1;
             }
-
             else
             {
                 btn.Text = "O";

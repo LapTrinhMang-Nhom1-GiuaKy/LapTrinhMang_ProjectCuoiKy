@@ -1,9 +1,16 @@
+﻿using CaroLAN.Managers;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CaroLAN
+namespace CaroLAN.Forms
 {
     public partial class LoginForm : Form
     {
@@ -24,7 +31,7 @@ namespace CaroLAN
         private void LoginForm_Load(object? sender, EventArgs? e)
         {
             UpdateConnectionState(false);
-            
+
             AutoFindAndConnectServer();
         }
 
@@ -45,7 +52,7 @@ namespace CaroLAN
             btnLogin.Enabled = isConnected;
             btnRegister.Enabled = isConnected;
             tabControl1.Enabled = isConnected;
-            
+
             if (!isConnected)
             {
                 lblStatus.Text = "⚪ Chưa kết nối - Vui lòng kết nối server";
@@ -85,7 +92,7 @@ namespace CaroLAN
                             {
                                 txtServerIP.Text = servers[0].IPAddress;
                                 lblStatus.Text = $"✅ Tìm thấy: {servers[0].ServerName}";
-                                
+
                                 ConnectToSelectedServer();
                             }
                             else
@@ -170,7 +177,7 @@ namespace CaroLAN
                 DiscoveredServer selected = (DiscoveredServer)lstServers.SelectedItem;
                 txtServerIP.Text = selected.IPAddress;
                 lblStatus.Text = $"✅ Đã chọn: {selected.ServerName}";
-                
+
                 ConnectToSelectedServer();
             }
             else
@@ -313,9 +320,9 @@ namespace CaroLAN
                     lblStatus.Text = "❌ Không kết nối được server";
                     btnConnect.Enabled = true;
                     UpdateConnectionState(false);
-                    MessageBox.Show("Không thể kết nối đến server!\nVui lòng kiểm tra:\n- Server đã bật\n- Địa chỉ IP đúng\n- Firewall không chặn", 
-                        "Lỗi kết nối", 
-                        MessageBoxButtons.OK, 
+                    MessageBox.Show("Không thể kết nối đến server!\nVui lòng kiểm tra:\n- Server đã bật\n- Địa chỉ IP đúng\n- Firewall không chặn",
+                        "Lỗi kết nối",
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
             }
@@ -351,9 +358,9 @@ namespace CaroLAN
             {
                 socket.Send($"LOGIN:{username}:{password}");
                 lblStatus.Text = "Đang đăng nhập...";
-                
+
                 string? response = WaitForResponse("LOGIN_", 5000);
-                
+
                 if (response != null && response.StartsWith("LOGIN_SUCCESS:"))
                 {
                     var match = Regex.Match(response, @"^LOGIN_SUCCESS:(\d+):([^:]+):(\d+):(\d+):(\d+)");
@@ -364,7 +371,7 @@ namespace CaroLAN
                         totalGames = int.Parse(match.Groups[3].Value);
                         wins = int.Parse(match.Groups[4].Value);
                         losses = int.Parse(match.Groups[5].Value);
-                        
+
                         isLoggedIn = true;
                         lblStatus.Text = $"Đăng nhập thành công: {currentUsername}";
                         lblUserInfo.Text = $"Xin chào, {currentUsername}! | Thắng: {wins} | Thua: {losses} | Tổng: {totalGames}";
@@ -394,7 +401,7 @@ namespace CaroLAN
         private string? WaitForResponse(string prefix, int timeoutMs)
         {
             DateTime startTime = DateTime.Now;
-            
+
             while ((DateTime.Now - startTime).TotalMilliseconds < timeoutMs)
             {
                 try
@@ -403,7 +410,7 @@ namespace CaroLAN
                     {
                         return null;
                     }
-                    
+
                     string data = socket.Receive();
                     if (!string.IsNullOrEmpty(data))
                     {
@@ -419,7 +426,7 @@ namespace CaroLAN
                             }
                         }
                     }
-                    
+
                     Thread.Sleep(10);
                 }
                 catch
@@ -427,7 +434,7 @@ namespace CaroLAN
                     return null;
                 }
             }
-            
+
             return null;
         }
 
@@ -477,9 +484,9 @@ namespace CaroLAN
             {
                 socket.Send(registerMessage);
                 lblStatus.Text = "Đang đăng ký...";
-                
+
                 string? response = WaitForResponse("REGISTER_", 5000);
-                
+
                 if (response != null && response.StartsWith("REGISTER_SUCCESS:"))
                 {
                     lblStatus.Text = "Đăng ký thành công! Vui lòng đăng nhập.";
@@ -562,7 +569,7 @@ namespace CaroLAN
                                     }));
                                 }
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                             }
                         }
@@ -666,11 +673,6 @@ namespace CaroLAN
             }
 
             base.OnFormClosing(e);
-        }
-
-        private void txtServerIP_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

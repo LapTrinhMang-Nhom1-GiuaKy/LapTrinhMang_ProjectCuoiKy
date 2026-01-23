@@ -1,21 +1,27 @@
+﻿using CaroLAN.Managers;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
-using System.Threading;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CaroLAN
+namespace CaroLAN.Forms
 {
     public partial class Form1 : Form
     {
         ChessBoardManager chessBoard;
         SocketManager socket;
-        Thread listenThread;
+        Thread? listenThread;
         private CancellationTokenSource cancellationTokenSource;
 
         private string roomId;
         private bool isMyTurn = false;
         private int timeLeft = 20;
-        private System.Windows.Forms.Timer turnTimer;
+        private System.Windows.Forms.Timer? turnTimer;
         private bool iAmPlayerX;
 
         private readonly Color ColorX = Color.FromArgb(70, 130, 180);
@@ -180,12 +186,12 @@ namespace CaroLAN
             timeLeft = 20;
             lblTimer.Text = $"⏰ {timeLeft}s";
             lblTimer.ForeColor = ColorX;
-            turnTimer.Start();
+            turnTimer?.Start();
         }
 
         private void StopTurnTimer()
         {
-            turnTimer.Stop();
+            turnTimer?.Stop();
             lblTimer.Text = "⏰ --";
             lblTimer.ForeColor = ColorX;
         }
@@ -236,7 +242,7 @@ namespace CaroLAN
                                 Invoke(new Action(() =>
                                 {
                                     SoundManager.PlayMoveSound();
-                                    
+
                                     chessBoard.OtherPlayerMove(new Point(x, y));
                                     isMyTurn = true;
 
@@ -268,7 +274,7 @@ namespace CaroLAN
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Information
                                 );
-                                
+
                                 System.Threading.Timer? closeTimer = null;
                                 closeTimer = new System.Threading.Timer((state) =>
                                 {
@@ -364,16 +370,16 @@ namespace CaroLAN
             listenThread.Start();
         }
 
-        private void ChessBoard_PlayerClicked(object sender, Point e)
+        private void ChessBoard_PlayerClicked(object? sender, Point e)
         {
             if (!isMyTurn || chessBoard.isGameOver)
             {
                 MessageBox.Show("⚠️ Chưa đến lượt bạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
+
             SoundManager.PlayMoveSound();
-            
+
             string messageToSend = $"GAME_MOVE:{e.X},{e.Y}";
 
             try
@@ -393,7 +399,7 @@ namespace CaroLAN
             UpdatePlayerStatus(!iAmPlayerX);
         }
 
-        private void ChessBoard_GameEnded(object sender, Player winner)
+        private void ChessBoard_GameEnded(object? sender, Player winner)
         {
             StopTurnTimer();
         }
@@ -409,7 +415,7 @@ namespace CaroLAN
                 {
                     socket.Send("RESIGN");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                 }
                 EndGame("🏳️ Bạn đã đầu hàng!");
@@ -497,20 +503,5 @@ namespace CaroLAN
                 e.SuppressKeyPress = true;
             }
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void pnlBoardContainer_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnlHeader_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
     }
 }

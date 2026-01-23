@@ -1,23 +1,22 @@
+﻿using CaroLAN.Managers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CaroLAN
+namespace CaroLAN.Forms
 {
     public partial class sanhCho : Form
     {
-        ChessBoardManager chessBoard;
+        private ChessBoardManager? chessBoard;
         private readonly SocketManager socket;
-        Thread listenThread;
+        private Thread? listenThread;
         private CancellationTokenSource cancellationTokenSource;
         private ServerDiscoveryClient? serverDiscovery;
 
@@ -29,9 +28,9 @@ namespace CaroLAN
 
         private Dictionary<string, string> receivedInvitations;
         private Dictionary<string, DateTime> invitationTimestamps;
-        
+
         private string myEndPoint;
-        
+
         private Queue<string> pendingMessages;
 
         private static readonly Regex ClientListRegex = new Regex(@"^CLIENT_LIST:(.*)$", RegexOptions.Compiled);
@@ -90,10 +89,10 @@ namespace CaroLAN
                 }
 
                 myEndPoint = socket.GetLocalEndPoint();
-                
+
                 lobbyListening();
-                
-                Task.Delay(300).ContinueWith(_ => 
+
+                Task.Delay(300).ContinueWith(_ =>
                 {
                     try
                     {
@@ -102,7 +101,7 @@ namespace CaroLAN
                             socket.Send("GET_CLIENT_LIST");
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                     }
                 });
@@ -119,7 +118,7 @@ namespace CaroLAN
         private void btnConnect_Click_1(object sender, EventArgs e)
         {
             SoundManager.PlayClickSound();
-            
+
             if (socket.IsConnected)
             {
                 DisconnectFromServer();
@@ -140,15 +139,15 @@ namespace CaroLAN
             listenThread = new Thread(() =>
             {
                 int loopCount = 0;
-                
+
                 Thread.Sleep(100);
-                
+
                 while (!token.IsCancellationRequested)
                 {
                     try
                     {
                         loopCount++;
-                        
+
                         // Kiểm tra kết nối
                         if (!socket.IsConnected)
                         {
@@ -158,7 +157,7 @@ namespace CaroLAN
                                 lstClients.Items.Clear();
                                 lstRequests.Items.Clear();
                                 UpdateConnectionState(false);
-                                
+
                                 bool reconnected = TryReconnect();
                                 if (!reconnected)
                                 {
@@ -187,7 +186,7 @@ namespace CaroLAN
                                 data = socket.Receive();
                             }
                         }
-                        
+
                         if (string.IsNullOrEmpty(data))
                         {
                             Thread.Sleep(10);
@@ -291,9 +290,9 @@ namespace CaroLAN
                                 RemoveInvitationFromList(invitationId);
                                 currentRoomId = roomId;
                                 isInRoom = true;
-                                
-                                amFirst = (position == "FIRST");
-                                
+
+                                amFirst = !string.IsNullOrEmpty(position) && position.StartsWith("FIRST");
+
                                 string positionText = amFirst ? "Bạn đi trước (X)" : "Bạn đi sau (O)";
                                 lblStatus.Text = $"Lời mời được chấp nhận. Vào phòng {roomId} - {positionText}";
                                 StartGame();
@@ -342,7 +341,9 @@ namespace CaroLAN
                             if (parts.Length >= 3)
                             {
                                 currentRoomId = parts[1];
-                                int playerCount = int.Parse(parts[2]);
+                                string countStr = new string(parts[2].TakeWhile(char.IsDigit).ToArray());
+                                int playerCount = 0;
+                                int.TryParse(countStr, out playerCount);
                                 amFirst = (playerCount == 1);
 
                                 Invoke(new Action(() =>
@@ -397,10 +398,10 @@ namespace CaroLAN
                             if (clientListMatch.Success)
                             {
                                 string clientData = clientListMatch.Groups[1].Value;
-                                string[] clients = string.IsNullOrEmpty(clientData) 
-                                    ? Array.Empty<string>() 
+                                string[] clients = string.IsNullOrEmpty(clientData)
+                                    ? Array.Empty<string>()
                                     : clientData.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                                
+
                                 Invoke(new Action(() =>
                                 {
                                     UpdateClientList(clients);
@@ -424,13 +425,13 @@ namespace CaroLAN
                             {
                                 lblStatus.Text = "Không thể tham gia phòng! Đang thử kết nối lại...";
                                 UpdateConnectionState(false);
-                                
+
                                 bool reconnected = TryReconnect();
-                                
+
                                 if (reconnected)
                                 {
                                     lblStatus.Text = "Đã kết nối lại thành công!";
-                                    Task.Delay(300).ContinueWith(_ => 
+                                    Task.Delay(300).ContinueWith(_ =>
                                     {
                                         try
                                         {
@@ -502,7 +503,7 @@ namespace CaroLAN
                         break;
                     }
                 }
-                
+
                 try
                 {
                     Invoke(new Action(() =>
@@ -594,7 +595,7 @@ namespace CaroLAN
                     lstClients.Invoke(new Action(() => UpdateClientList(clients)));
                     return;
                 }
-                
+
                 lstClients.Items.Clear();
 
                 if (clients.Length == 0 || string.IsNullOrEmpty(clients[0]))
@@ -628,7 +629,7 @@ namespace CaroLAN
                     {
                         isMe = cleanClient.Equals(username.Trim(), StringComparison.OrdinalIgnoreCase);
                     }
-                    
+
                     if (!isMe && !string.IsNullOrEmpty(currentEndPoint) && currentEndPoint != "Not connected" && currentEndPoint != "Error")
                     {
                         isMe = cleanClient.Equals(currentEndPoint.Trim(), StringComparison.OrdinalIgnoreCase);
@@ -692,7 +693,7 @@ namespace CaroLAN
         private void button3_Click(object sender, EventArgs e)
         {
             SoundManager.PlayClickSound();
-            
+
             if (!socket.IsConnected)
             {
                 MessageBox.Show("Bạn chưa kết nối đến server!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -736,7 +737,7 @@ namespace CaroLAN
                     MessageBox.Show("Lỗi: Không có thông tin phòng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
+
                 Form1 gameForm = new Form1(currentRoomId, socket, amFirst);
                 gameForm.FormClosed += (s, args) =>
                 {
@@ -750,7 +751,7 @@ namespace CaroLAN
 
                     lobbyListening();
 
-                    Task.Delay(300).ContinueWith(_ => 
+                    Task.Delay(300).ContinueWith(_ =>
                     {
                         try
                         {
@@ -763,7 +764,7 @@ namespace CaroLAN
                                 }));
                             }
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                         }
                     });
@@ -799,12 +800,12 @@ namespace CaroLAN
             }
         }
 
-        private void sanhCho_FormClosing(object sender, FormClosingEventArgs e)
+        private void sanhCho_FormClosing(object? sender, FormClosingEventArgs e)
         {
             try
             {
                 SoundManager.StopMusic();
-                
+
                 if (socket.IsConnected)
                 {
                     if (isInRoom)
@@ -843,7 +844,7 @@ namespace CaroLAN
         private void btnFindServers_Click(object sender, EventArgs e)
         {
             SoundManager.PlayClickSound();
-            
+
             try
             {
                 lblStatus.Text = "🔍 Đang tìm server trong mạng LAN...";
@@ -884,7 +885,7 @@ namespace CaroLAN
                             {
                                 txtIP.Text = servers[0].IPAddress;
                                 lblStatus.Text = $"✅ Tìm thấy: {servers[0].ServerName}";
-                                
+
                                 var result = MessageBox.Show(
                                     $"Đã tìm thấy server:\n\n" +
                                     $"📌 Tên: {servers[0].ServerName}\n" +
@@ -1000,7 +1001,7 @@ namespace CaroLAN
                 DiscoveredServer selected = (DiscoveredServer)lstServers.SelectedItem;
                 txtIP.Text = selected.IPAddress;
                 lblStatus.Text = $"✅ Đã chọn: {selected.ServerName}";
-                
+
                 ConnectToServer();
             }
             else
@@ -1014,9 +1015,9 @@ namespace CaroLAN
             SoundManager.Initialize();
             SoundManager.PlayLobbyMusic();
             UpdateSoundButtonsText();
-            
+
             UpdateConnectionState(socket.IsConnected);
-            
+
             if (socket.IsConnected)
             {
                 lblStatus.Text = string.IsNullOrEmpty(username)
@@ -1042,7 +1043,7 @@ namespace CaroLAN
             lstClients.Enabled = isConnected;
             lstRequests.Enabled = isConnected;
             tabHistory.Enabled = isConnected;
-            
+
             if (!isConnected)
             {
                 lblStatus.Text = "⚪ Chưa kết nối - Vui lòng kết nối server";
@@ -1173,7 +1174,7 @@ namespace CaroLAN
         private void btnRequest_Click(object sender, EventArgs e)
         {
             SoundManager.PlayClickSound();
-            
+
             if (!socket.IsConnected)
             {
                 MessageBox.Show("Bạn chưa kết nối đến server!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1195,13 +1196,13 @@ namespace CaroLAN
             try
             {
                 string? selectedClient = lstClients.SelectedItem.ToString();
-                
+
                 if (string.IsNullOrEmpty(selectedClient))
                 {
                     MessageBox.Show("Không thể lấy thông tin người chơi!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
+
                 if (selectedClient.StartsWith("[BUSY]"))
                 {
                     MessageBox.Show("Người chơi này đang bận!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1209,7 +1210,7 @@ namespace CaroLAN
                 }
 
                 string cleanClientName = selectedClient.Replace("[BUSY] ", "").Trim();
-                
+
                 socket.Send($"SEND_INVITATION:{cleanClientName}");
                 lblStatus.Text = $"Đang gửi lời mời đến {cleanClientName}...";
             }
@@ -1222,7 +1223,7 @@ namespace CaroLAN
         private void btnAccept_Click(object sender, EventArgs e)
         {
             SoundManager.PlayClickSound();
-            
+
             if (lstRequests.SelectedItem == null)
             {
                 MessageBox.Show("Vui lòng chọn một lời mời để chấp nhận!");
@@ -1230,7 +1231,7 @@ namespace CaroLAN
             }
 
             string? selected = lstRequests.SelectedItem.ToString();
-            
+
             if (string.IsNullOrEmpty(selected))
             {
                 MessageBox.Show("Không thể lấy thông tin lời mời!");
@@ -1272,7 +1273,7 @@ namespace CaroLAN
         private void UpdateMyHistory(string historyData)
         {
             dgvMyHistory.Rows.Clear();
-            
+
             if (string.IsNullOrEmpty(historyData))
             {
                 lblHistoryStats.Text = "Tổng: 0 trận | Thắng: 0 | Thua: 0 | Hòa: 0";
@@ -1285,7 +1286,7 @@ namespace CaroLAN
             int wins = 0;
             int losses = 0;
             int draws = 0;
-            
+
             foreach (string match in matches)
             {
                 string[] parts = match.Split('|');
@@ -1299,7 +1300,7 @@ namespace CaroLAN
                     string endedAt = parts[6];
 
                     string opponent = (player1 == username) ? player2 : player1;
-                    
+
                     string result;
                     Color resultColor;
                     if (winner == username)
@@ -1334,18 +1335,18 @@ namespace CaroLAN
                     }
 
                     int rowIndex = dgvMyHistory.Rows.Add(roomId, opponent, result, displayTime);
-                    
+
                     dgvMyHistory.Rows[rowIndex].Cells[2].Style.ForeColor = resultColor;
                     dgvMyHistory.Rows[rowIndex].Cells[2].Style.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-                    
+
                     totalMatches++;
                 }
             }
 
             lblHistoryStats.Text = $"Tổng: {totalMatches} trận | Thắng: {wins} | Thua: {losses} | Hòa: {draws}";
-            
+
             StyleDataGridView();
-            
+
             lblStatus.Text = "Đã cập nhật lịch sử game";
         }
 
@@ -1356,18 +1357,18 @@ namespace CaroLAN
             dgvMyHistory.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             dgvMyHistory.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvMyHistory.ColumnHeadersDefaultCellStyle.Padding = new Padding(5);
-            
+
             dgvMyHistory.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(250, 251, 252);
             dgvMyHistory.RowsDefaultCellStyle.BackColor = Color.White;
-            
+
             dgvMyHistory.RowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
             dgvMyHistory.RowsDefaultCellStyle.SelectionForeColor = Color.White;
-            
+
             dgvMyHistory.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
             dgvMyHistory.DefaultCellStyle.ForeColor = Color.FromArgb(44, 62, 80);
             dgvMyHistory.DefaultCellStyle.Padding = new Padding(5);
             dgvMyHistory.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            
+
             if (dgvMyHistory.Columns.Count > 2)
             {
                 dgvMyHistory.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1377,7 +1378,7 @@ namespace CaroLAN
         private void btnRefreshMy_Click(object sender, EventArgs e)
         {
             SoundManager.PlayClickSound();
-            
+
             if (!socket.IsConnected)
             {
                 MessageBox.Show("Bạn chưa kết nối đến server!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1413,7 +1414,7 @@ namespace CaroLAN
                     socket.Send("GET_MY_HISTORY");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -1427,32 +1428,32 @@ namespace CaroLAN
                 {
                     return false;
                 }
-                
+
                 socket.Disconnect();
                 Thread.Sleep(500);
-                
+
                 if (socket.ConnectToServer(serverIP))
                 {
                     lblStatus.Text = "Đã kết nối lại! Đang đăng nhập...";
                     UpdateConnectionState(true);
-                    
+
                     if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
                     {
                         Thread.Sleep(200);
                         socket.Send($"LOGIN:{username}:{password}");
                         Thread.Sleep(300);
                     }
-                    
+
                     lobbyListening();
-                    
+
                     lblStatus.Text = "Đã kết nối lại thành công!";
                     return true;
                 }
-                
+
                 UpdateConnectionState(false);
                 return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 UpdateConnectionState(false);
                 return false;
@@ -1470,7 +1471,7 @@ namespace CaroLAN
             SoundManager.PlayClickSound();
             SoundManager.ToggleMusic();
             UpdateSoundButtonsText();
-            
+
             if (SoundManager.MusicEnabled)
             {
                 SoundManager.PlayLobbyMusic();
@@ -1481,7 +1482,7 @@ namespace CaroLAN
         {
             SoundManager.ToggleSfx();
             UpdateSoundButtonsText();
-            
+
             if (SoundManager.SfxEnabled)
             {
                 SoundManager.PlayClickSound();

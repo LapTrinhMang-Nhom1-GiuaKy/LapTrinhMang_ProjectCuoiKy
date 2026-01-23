@@ -1,8 +1,9 @@
 using System;
 using System.Drawing;
 using System.Net.Sockets;
+using WinFormServer.Models;
 
-namespace WinFormServer
+namespace WinFormServer.Managers
 {
  
     internal class GameEngine

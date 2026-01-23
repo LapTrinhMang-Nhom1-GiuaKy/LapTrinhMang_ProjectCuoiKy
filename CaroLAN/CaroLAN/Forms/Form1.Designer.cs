@@ -1,20 +1,20 @@
-﻿namespace CaroLAN
+﻿namespace CaroLAN.Forms
 {
     partial class Form1
     {
-
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         private System.Windows.Forms.Panel pnlChessBoard;
         private System.Windows.Forms.Label lblRoom;
-        private System.Windows.Forms.Label lblTurn;
         private System.Windows.Forms.Label lblTimer;
         private System.Windows.Forms.Button btnResign;
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Panel pnlSidebar;
         private System.Windows.Forms.Label lblGameTitle;
         private System.Windows.Forms.Panel pnlBoardContainer;
-        private System.Windows.Forms.Label lblPlayerInfo;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Panel pnlPlayerX;
         private System.Windows.Forms.Label lblPlayerX;
@@ -85,7 +85,6 @@
             pnlHeader.Name = "pnlHeader";
             pnlHeader.Size = new Size(176, 54);
             pnlHeader.TabIndex = 4;
-            pnlHeader.Paint += pnlHeader_Paint;
             // 
             // lblGameTitle
             // 
@@ -109,7 +108,6 @@
             pnlBoardContainer.Padding = new Padding(15);
             pnlBoardContainer.Size = new Size(494, 490);
             pnlBoardContainer.TabIndex = 1;
-            pnlBoardContainer.Paint += pnlBoardContainer_Paint;
             // 
             // pnlChessBoard
             // 
@@ -161,7 +159,6 @@
             btnSendChat.TabIndex = 2;
             btnSendChat.Text = "→";
             btnSendChat.UseVisualStyleBackColor = true;
-            btnSendChat.Click += btnSendChat_Click;
             // 
             // pnlSidebar
             // 
@@ -316,7 +313,6 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "🎮 Caro Battle - Gaming Arena";
-            Load += Form1_Load;
             pnlBoardContainer.ResumeLayout(false);
             pnlChat.ResumeLayout(false);
             pnlChat.PerformLayout();
@@ -332,4 +328,5 @@
 
         #endregion
     }
+
 }
